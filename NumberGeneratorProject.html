@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+
+            #wrapper {
+                margin-top: 10px;
+                display: flex;
+                justify-content: center;  /* Centers horizontally */
+                align-items: center;
+                
+            }
+            
+            #container {
+               padding: 10px;
+                width: 500px;
+                height: auto;
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+                row-gap: 5px;
+                column-gap: 0px;  
+                place-items: center; 
+                
+
+            }
+
+            .number {
+            display: flex;
+            width: 80px;
+            height: 40px;
+            border-radius: 2px;
+            justify-content: center; /* Horizontal centering */
+            align-items: center;
+            color: rgb(246, 246, 246);
+            font-weight: 600;
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+            }
+
+
+            #headerDiv {
+                width: auto;
+                height: auto;
+                display: flex;
+                justify-content: center;  /* Centers horizontally */
+                align-items: center;
+            }
+
+            #heading-1 {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 30px;
+            }
+
+            #heading-2 {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px;
+            }
+
+
+            #wrapper-search-bar {
+                margin-top: 10px;
+                display: flex;
+                justify-content: center;  /* Centers horizontally */
+                align-items: center;
+            }
+
+            #search-bar {
+                height: 30px;
+                width: 300px;
+                border: 2px solid lightgreen;
+            }
+
+            #search-button {
+                height: 34px;
+                margin-left: 10px;
+                background-color: lightgreen;
+                border: none;
+                border-radius: 5px;
+                width: 130px;
+            }
+
+            #warning-wrapper {
+        
+                display: flex;
+                justify-content: center;  /* Centers horizontally */
+                align-items: center;
+                margin: 5px;
+                height: 30px;
+            }
+
+            #warning-para {
+                font-family: Arial, Helvetica, sans-serif;
+                height: 10px;
+                color: red;
+                
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+
+         
+
+            let headerDiv = document.createElement('div')
+            headerDiv.setAttribute('id','headerDiv')
+            document.body.insertAdjacentElement("afterbegin", headerDiv)
+
+            let heading1 = document.createElement('h1')
+            heading1.setAttribute('id','heading-1')
+            heading1.textContent = 'Number Generator'
+            headerDiv.append(heading1)
+
+            let heading2 = document.createElement('h2')
+            heading2.setAttribute('id','heading-2')
+            heading2.textContent = 'by tanish'
+            heading1.append(heading2)
+
+            let list = document.createElement('ol')
+            list.setAttribute('id', 'list')
+            heading2.append(list)
+
+            let li1 = document.createElement('li')
+            li1.setAttribute('id', 'item1')
+            li1.textContent = 'Even numbers background is green'
+            list.append(li1)
+
+            let li2 = document.createElement('li')
+            li2.setAttribute('id', 'item2')
+            li2.textContent = 'Odd numbers background is blue'
+            li1.append(li2)
+
+            let li3 = document.createElement('li')
+            li3.setAttribute('id', 'item3')
+            li3.textContent = 'Prime numbers background is red'
+            li2.append(li3)
+            
+            console.log();
+
+            let field_warning_wrapper = document.createElement('div')
+            field_warning_wrapper.setAttribute('id', 'warning-wrapper')
+            document.body.append(field_warning_wrapper)
+            
+            let field_warning = document.createElement('p')
+            field_warning.setAttribute('id', 'warning-para')
+            field_warning.textContent = ''
+            field_warning_wrapper.append(field_warning)
+
+            
+            let search_bar_wrapper = document.createElement('div')
+            search_bar_wrapper.setAttribute('id', 'wrapper-search-bar')
+            document.body.append(search_bar_wrapper)
+
+
+
+            let input = document.createElement('input')
+            input.setAttribute('id', 'search-bar')
+            input.setAttribute('type','text')
+            input.setAttribute('placeholder', 'Generate more number...')
+            search_bar_wrapper.append(input)
+
+            console.log(input.value);
+
+            let number_length;
+
+            // listening change in value on input field
+            input.addEventListener('change', e => {
+               number_length = parseInt(e.target.value) 
+               console.log(number_length);
+               
+            })
+
+            console.log(typeof number_length);
+
+            let search_buttton = document.createElement('button')
+            search_buttton.setAttribute('id','search-button')
+            search_buttton.textContent = 'Generate Numbers'
+            search_bar_wrapper.append(search_buttton)
+
+            let wrapper = document.createElement('div')
+            wrapper.setAttribute('id', 'wrapper')
+            document.body.append(wrapper)
+            
+            let container = document.createElement('div')
+            container.setAttribute('id', 'container')
+            wrapper.append(container)
+            console.log(document.body.children);
+
+            function isPrime(num) {
+                if (num < 2) return false
+                    for (let i = 2; i < Math.sqrt(num); i++) {
+                        if (num % i === 0) {
+                            return false
+                        }
+                }
+                return true
+            }
+
+            console.log(isPrime(8));
+            console.log(typeof number_length)
+            
+            search_buttton.addEventListener('click', () => {
+
+                container.innerHTML = '';
+                field_warning.textContent = ''
+                console.log(container.children)
+
+               if (isNaN(number_length) || number_length <= 0) {
+                    field_warning.textContent = 'Enter a valid positive number.'
+                    setTimeout(() => {field_warning.textContent = ''}, 3000)
+                } 
+               
+                
+                for (let i = 0; i < number_length; i++) {
+                let numberDiv = document.createElement('div') // create a div
+                numberDiv.classList.add('number') // add class for styling
+                numberDiv.textContent = i; // set text content 
+                 if (isPrime(i)) {
+                    numberDiv.style.backgroundColor = '	 	#ff6666';
+                 } else if (i % 2 === 0) {
+                    numberDiv.style.backgroundColor = ' 	#66ff66'; // Even numbers
+                } else {
+                    numberDiv.style.backgroundColor = '	 #66a3ff'; // Odd numbers (excluding primes)
+                }
+                container.append(numberDiv)
+                 // append/ insert it into the conatiner element which is basically a div \
+                 }   
+            
+            })
+            
+            
+            
+            
+        </script>
+    </body>
+</html>
