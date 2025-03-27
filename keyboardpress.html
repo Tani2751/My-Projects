@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;  /* Centers horizontally */
+            align-items: center; 
+        }
+
+        #sub-constainer-1 {
+                height: 70px;
+                width: 350px;
+                display: flex;
+                justify-content: center;  /* Centers horizontally */
+                align-items: center;
+                border-radius: 6px;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            }
+
+        #para-1 {
+            font-size: 26px;
+            font-family: Arial, Helvetica, sans-serif;
+            
+        }
+
+        #sub-constainer-2 {
+                height: 110px;
+                width: 100px;
+                border-radius: 6px;
+                display: flex;
+                justify-content: center;  /* Centers horizontally */
+                align-items: center;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            }
+
+
+            #para-2 {
+            font-size: 46px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(54, 178, 54);
+            
+        }
+        
+
+     
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="sub-constainer-1">
+            <p id="para-1">Pressed any Keyborad key</p>
+        </div>
+    </div>
+
+    <div id="container">
+        <div id="sub-constainer-2">
+            <p id="para-2">22</p>
+        </div>
+    </div>
+
+    
+   <script>
+     let para_1 = document.querySelector('#para-1')
+     let para_2 = document.querySelector('#para-2')
+     let strong = document.querySelector('#keyboard-press')
+
+
+     document.body.addEventListener('keydown', e => {
+        para_2.textContent = ''
+        para_2.textContent = `${e.keyCode}`
+        
+        para_1.textContent = ''
+        para_1.innerHTML = `You pressed <span style="color:green;">${e.key}</span>`
+     })
+   </script> 
+</body>
+</html>
