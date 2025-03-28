@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #field {
+            width: 400px;
+            height: 300px;
+            background-color: #00FF00;
+            border: 15px solid black;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            
+        }
+
+        #ball {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            transition: all 1s;
+        }
+    </style>
+</head>
+<body>
+    <div id="field">
+        <img src="https://en.js.cx/clipart/ball.svg" id="ball">. . . . . . . . . . . . . . . . . . . . . . . . .
+
+    </div>
+    <script>
+        let field = document.querySelector('#field')
+        let ball = document.querySelector('#ball')
+
+        console.log(field.clientLeft);
+        console.log(field.l);
+        
+        field.addEventListener('click', (event) => {
+            let fieldCoord = field.getBoundingClientRect()
+            console.log(fieldCoord.top);
+            
+            let ballCoords = {
+                top: event.clientY - fieldCoord .top - field.clientTop -
+                ball.clientHeight / 2,
+                left: event.clientX -fieldCoord.left - field.clientLeft -
+                ball.clientWidth / 2
+            }
+
+            console.log(ballCoords.top);
+            console.log(ballCoords.left);
+
+            // prevent crossing the top filed boundry
+            if (ballCoords.top < 0) ballCoords.top = 0
+
+            // prevent corssong the left field boundry 
+            if (ballCoords.left < 0) ballCoords.left = 0
+
+            // prevent crossing the right field boundry
+            if (ballCoords.left + ball.clientWidth > field.clientWidth) {
+                ballCoords.left = field.clientWidth - ball.clientWidth
+            }
+
+            // prevent crossing the bottom field boundry
+            if (ballCoords.top + ball.clientHeight > field.clientHeight) {
+                ballCoords.top = field.clientHeight - ball.clientHeight
+            }
+
+            ball.style.top = ballCoords.top + "px"
+            ball.style.left = ballCoords.left + 'px'
+        })
+    </script>
+</body>
+</html>
