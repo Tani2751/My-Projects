@@ -54,18 +54,18 @@
             console.log(ballCoords.top);
             console.log(ballCoords.left);
 
-            // prevent crossing the top filed boundry
+            // prevent crossing the top filed boundary
             if (ballCoords.top < 0) ballCoords.top = 0
 
-            // prevent corssong the left field boundry 
+            // prevent corssong the left field boundary 
             if (ballCoords.left < 0) ballCoords.left = 0
 
-            // prevent crossing the right field boundry
+            // prevent crossing the right field boundary
             if (ballCoords.left + ball.clientWidth > field.clientWidth) {
                 ballCoords.left = field.clientWidth - ball.clientWidth
             }
 
-            // prevent crossing the bottom field boundry
+            // prevent crossing the bottom field boundary
             if (ballCoords.top + ball.clientHeight > field.clientHeight) {
                 ballCoords.top = field.clientHeight - ball.clientHeight
             }
